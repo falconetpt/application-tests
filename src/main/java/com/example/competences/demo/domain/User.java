@@ -1,11 +1,10 @@
 package com.example.competences.demo.domain;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name="users")
-public class User extends BaseEntity {
+public final class User extends BaseEntity {
 
     private String name;
     private String password;

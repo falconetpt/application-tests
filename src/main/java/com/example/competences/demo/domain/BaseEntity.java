@@ -5,7 +5,7 @@ import java.util.UUID;
 
 @Entity
 @Inheritance
-public class BaseEntity {
+public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
