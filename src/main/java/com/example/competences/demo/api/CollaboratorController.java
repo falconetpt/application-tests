@@ -21,6 +21,11 @@ public class CollaboratorController {
         return ResponseEntity.ok(collaboratorService.getAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getId() {
+        return ResponseEntity.ok(collaboratorService.getAll());
+    }
+
     @PostMapping
     public ResponseEntity<?> createCollaborator(@RequestBody CollaboratorDTO collaboratorDTO) {
         try {
