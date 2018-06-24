@@ -5,6 +5,7 @@ import com.example.competences.demo.domain.collaborator.CollaboratorAssembler;
 import com.example.competences.demo.domain.collaborator.CollaboratorDTO;
 import com.example.competences.demo.infrastructure.services.CollaboratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,15 @@ public class CollaboratorController {
 
     @PostMapping
     public ResponseEntity<?> createCollaborator(@RequestBody CollaboratorDTO collaboratorDTO) {
+
+        ResponseEntity<?> responseEntity;
         try {
-            Collaborator collaborator = CollaboratorAssembler.buildCollaboratorFromDTO(collaboratorDTO);
-            return ResponseEntity.ok(collaboratorService.save(collaborator));
+            Collaborator collaborator = collaboratorService.create(collaboratorDTO);
+            responseEntity = new ResponseEntity( collaborator, HttpStatus.CREATED );
         } catch (IllegalArgumentException e) {
-            return null;
+            responseEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
+        return responseEntity;
     }
 }
